@@ -1,0 +1,55 @@
+Write a function that takes in a string made up of brackets and other characters.
+The function should return a boolean whether or not the string is balanced in regards to brackets
+
+function balancedBrackets(string){
+ let stack = []
+ let openHash = {
+  "{" : "}",
+  "[" : "]",
+  "(" : ")"
+ }
+ 
+ let closeHash = {
+    "]" : true,
+    ")" : true,
+    "}" : true
+ }
+ 
+ for(letter of string){
+  if(letter in openHash || letter in closeHash){
+    if(letter in openHash){
+      stack.push(openHash[letter])
+    }else {
+    let lastPush = stack.pop()
+    if(lastPush !== letter) return false
+    }
+  }
+ }
+ return stack.length === 0
+}
+
+--Time -> O(n)
+--Space -> O(n)
+-- have 2 hashMaps
+   1 {
+    "[" : "]"
+   }
+   
+   2nd {
+   "]" : true
+   }
+   
+   let stack = []
+   
+   loop through string
+      if(letterIsBracket(letter)){
+          if(isLetterOpenBracket(letter)){
+            stack.push(hashMap1[letter])
+          }else {
+            lastPushed = stack.pop()
+            if(lastPushed !== letter) return false
+          }
+        
+      }
+      
+   return true
